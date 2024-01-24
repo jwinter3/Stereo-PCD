@@ -1,0 +1,31 @@
+#!/bin/bash
+
+PATH_TO_MIDDLEBURY_DATASET=""
+MATCHER_EXECUTABLE=""
+OUTPUT_DIR="out_middlebury"
+START_GAP="-0.015"
+CONTINUE_GAP="-0.008"
+MATCH="0.02"
+EDGES_THS="0.0001"
+MAX_DISP="2000"
+THREADS="1"
+MULT="16"
+
+mkdir -p "$OUTPUT_DIR"
+
+SAMPLES=($(ls "$PATH_TO_MIDDLEBURY_DATASET"))
+
+for SAMPLE in ${SAMPLES[@]}; do
+
+    MATCH_TIME=$( (time \
+    "$MATCHER_EXECUTABLE" \
+    "${PATH_TO_MIDDLEBURY_DATASET}/${SAMPLE}/im0.png" \
+    "${PATH_TO_MIDDLEBURY_DATASET}/${SAMPLE}/im1.png" \
+    "${OUTPUT_DIR}/${SAMPLE}.png" \
+    "$START_GAP" "$CONTINUE_GAP" "$MATCH" "$EDGES_THS" "$MAX_DISP" "$THREADS" "$MULT" \
+    ) 2>&1 )
+
+    echo "$SAMPLE" "$MATCH_TIME"
+
+done
+
