@@ -39,8 +39,8 @@ class cmake_build_ext(build_ext):
 setup(
     name="stereo_pcd",
     version="0.1",
-    description="",
-    url="",
+    description="Python package for combining data from stereo cameras and lidars",
+    url="https://github.com/jwinter3/Stereo-PCD",
     author="Jakub Winter",
     author_email="jakub.winter.stud@pw.edu.pl",
     license="MIT",
